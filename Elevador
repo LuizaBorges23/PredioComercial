@@ -1,0 +1,87 @@
+package predio;
+
+public class Elevador {
+    private int andarAtual=8;
+    public Elevador(int par, int par1) {
+    }
+    private int totalDeAndares=7;
+    private int capacidade=5;
+    private int qdp=6;
+    public void Elevador() {
+        this.capacidade=capacidade;
+        this.totalDeAndares=totalDeAndares;
+        }
+        public boolean  entra() {
+            if(this.qdp<this.capacidade) {
+                this.qdp++;
+                return true;
+            }else {
+                return false;
+            }
+        }
+        public boolean sai() {
+            if(this.qdp>this.capacidade) {
+                this.qdp--;
+                return true; 
+            }else {
+                return false;
+            }
+        }
+        public boolean sobe() {
+            if(this.andarAtual>this.totalDeAndares) {
+                this.andarAtual++;
+                return true;
+            }else {
+                return false;
+            }
+        }
+        public boolean desce(int andarAtual, int totalDeAndares) {
+            if(this.andarAtual<this.totalDeAndares) {
+                this.andarAtual--;
+                return true;
+            }else {
+                return false;
+            }
+        }
+        public int getandarAtual() {
+            return andarAtual;
+        }
+        public int gettotalDeAndares() {
+            return totalDeAndares;
+        }
+        public int getcapacidade() {
+            return capacidade;
+        }
+        public int getqdp() {
+            return qdp;
+        }
+}
+*********
+package aplicaçoes;
+
+import java.util.Random;
+
+import predio.Elevador;
+
+public class Appelevador {
+public static void main(String[] args) {
+	   Elevador elevador = new Elevador(3,5);
+	   Random random = new Random();
+	   int qps, qpe;
+	   for(int i=0;i<=elevador.gettotalDeAndares();i++) {
+		   System.out.println("Andar: "+elevador.getandarAtual()+"-Pessoas:"+elevador.getqdp());
+		   qps=random.nextInt(elevador.getqdp()+1);
+		   qpe=random.nextInt(elevador.getcapacidade()+1);
+		   System.out.println("Pessoas a sair: "+qps);
+		   System.out.println("Peesoas a entrar: "+qpe);
+		   for(int j=1;j<=qps;j++) {
+			   elevador.sai();
+		   }
+		   for(int j=1;j<qpe;j++) {
+			   elevador.entra();
+			   }
+		   System.out.println("Andar: "+elevador.getandarAtual()+"-Pessoas: "+elevador.getqdp());
+		   elevador.sobe();
+	   }
+	}
+}
